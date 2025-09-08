@@ -303,13 +303,6 @@ src/
 
 ## 🚨 Important Notes
 
-### Security Considerations
-
-- Use strong, unique passwords for database access
-- Generate a secure JWT secret key
-- Never commit `.env` files to version control
-- Use HTTPS in production environments
-
 ### Database Management
 
 - The application uses `force: true` in development, which recreates tables on startup
