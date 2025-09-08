@@ -102,17 +102,8 @@ npm run dev
 
 The application will start on `http://localhost:3005` (or your configured port).
 
-### 3. Production Build
 
-```bash
-# Build the TypeScript code
-npm run build
-
-# Start the production server
-npm start
-```
-
-### 4. Application Logs
+### 3. Application Logs
 
 Logs are stored in the `src/logs/` directory:
 - **Debug logs**: `src/logs/debug/YYYY-MM-DD.log`
@@ -233,7 +224,6 @@ A comprehensive Postman collection is available with full documentation and inte
 **Full Postman Collection Documentation**: [https://www.postman.com/reaganscofield/munchtaskmanagement/documentation/x02xeed/munchtaskmanagement-collection](https://www.postman.com/reaganscofield/munchtaskmanagement/documentation/x02xeed/munchtaskmanagement-collection)
 
 This online documentation provides:
-- **Interactive API testing** directly in your browser
 - **Complete endpoint documentation** with examples
 - **Request/response samples** for all operations
 - **Environment setup guides**
@@ -331,49 +321,6 @@ src/
 - Tests run against the same database as the application
 - No separate test database is configured for simplicity
 - Ensure the application is running before executing tests
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests for new functionality
-5. Ensure all tests pass
-6. Submit a pull request
-
-## 📄 License
-
-This project is private and proprietary.
-
-## 🆘 Troubleshooting
-
-### Common Issues
-
-1. **Database Connection Failed**
-   - Ensure Docker is running
-   - Check if PostgreSQL container is up: `docker ps`
-   - Verify environment variables in `.env`
-
-2. **Port Already in Use**
-   - Change `APPLICATION_PORT` in `.env`
-   - Or kill the process using the port
-
-3. **Tests Failing**
-   - Ensure the application is running
-   - Check database connection
-   - Verify all environment variables are set
-
-4. **JWT Token Issues**
-   - Ensure `SECRET_KEY` is set in `.env`
-   - Check token expiration
-   - Verify token format in requests
-
-### Getting Help
-
-- Check application logs in `src/logs/`
-- Review Docker logs: `docker-compose logs`
-- Ensure all prerequisites are installed
-- Verify environment configuration
 
 ---
 
