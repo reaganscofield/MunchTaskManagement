@@ -1,0 +1,1008 @@
+{
+	"info": {
+		"_postman_id": "183b3725-a4a6-4c5d-b7e7-e0f6ad8161d7",
+		"name": "MunchTaskManagement Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3731521",
+		"_collection_link": "https://www.postman.com/reaganscofield/workspace/munchtaskmanagement/collection/3731521-183b3725-a4a6-4c5d-b7e7-e0f6ad8161d7?action=share&source=collection_link&creator=3731521"
+	},
+	"item": [
+		{
+			"name": "User Signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Jon Snow\",\n\t\"email\": \"j.snow@gmail.com\",\n\t\"password\": \"@snow!!!7Kingdoms\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}/users/signup",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"users",
+						"signup"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "User Signup Response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Jon Snow\",\n\t\"email\": \"j.snow@gmail.com\",\n\t\"password\": \"@snow!!!7Kingdoms\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "/users/signup",
+							"path": [
+								"users",
+								"signup"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "137"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"89-jTaXhXW+rQ5B+70jqehvAy5IsCA\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 08 Sep 2025 15:51:39 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Successfully created user\",\n    \"data\": {\n        \"id\": \"ac9d794c-9f86-4354-a8af-e97d969abdad\",\n        \"name\": \"Jon Snow\",\n        \"email\": \"j.snow@gmail.com\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "User Signin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"j.snow@gmail.com\",\n\t\"password\": \"@snow!!!7Kingdoms\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}/users/signin",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"users",
+						"signin"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "User Signin Response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"j.snow@gmail.com\",\n\t\"password\": \"@snow!!!7Kingdoms\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "/users/signin",
+							"path": [
+								"users",
+								"signin"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "347"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"15b-htvCGirPgcGybR45NXymueIcCUE\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 08 Sep 2025 15:55:49 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Successfully logged in user\",\n    \"data\": {\n        \"token\": \"{{vault:json-web-token}}\",\n        \"expiresAt\": \"2025-09-18T15:55:49.583Z\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Task Creation",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Open Task\",\n\t\"description\": \"Task in open status\",\n\t\"priority\": \"LOW\",\n\t\"dueDate\":  \"2025-09-07 09:01:11.967+00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}/tasks",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"tasks"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Task Creation Response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Open Task\",\n\t\"description\": \"Task in open status\",\n\t\"priority\": \"LOW\",\n\t\"dueDate\":  \"2025-09-07 09:01:11.967+00\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "/tasks",
+							"path": [
+								"tasks"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "353"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"161-rY0duqSC3H2/z1VxG4GWwSa6AZM\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 08 Sep 2025 16:00:42 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Successfully created task\",\n    \"data\": {\n        \"id\": \"54bce30a-c9a2-4462-9b26-403e5c3cb454\",\n        \"title\": \"Open Task\",\n        \"description\": \"Task in open status\",\n        \"priority\": \"LOW\",\n        \"dueDate\": \"2025-09-07T09:01:11.967Z\",\n        \"createdByUserId\": \"ac9d794c-9f86-4354-a8af-e97d969abdad\",\n        \"status\": \"OPEN\",\n        \"updatedAt\": \"2025-09-08T16:00:42.651Z\",\n        \"createdAt\": \"2025-09-08T16:00:42.651Z\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Task Update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Closed Task\",\n\t\"description\": \"Task in closed status\",\n\t\"priority\": \"LOW\",\n\t\"dueDate\":  \"2025-09-07 09:01:11.967+00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}/tasks/{{taskId}}",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"tasks",
+						"{{taskId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Task Update Response",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Closed Task\",\n\t\"description\": \"Task in closed status\",\n\t\"priority\": \"LOW\",\n\t\"dueDate\":  \"2025-09-07 09:01:11.967+00\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "/tasks/",
+							"path": [
+								"tasks",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "365"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"16d-SxMSNM5JHNYM9h8tlOjpfBgpsHU\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 08 Sep 2025 16:02:49 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Successfully updated task details\",\n    \"data\": {\n        \"id\": \"54bce30a-c9a2-4462-9b26-403e5c3cb454\",\n        \"title\": \"Closed Task\",\n        \"description\": \"Task in closed status\",\n        \"dueDate\": \"2025-09-07T09:01:11.967Z\",\n        \"priority\": \"LOW\",\n        \"status\": \"OPEN\",\n        \"createdByUserId\": \"ac9d794c-9f86-4354-a8af-e97d969abdad\",\n        \"createdAt\": \"2025-09-08T16:00:42.651Z\",\n        \"updatedAt\": \"2025-09-08T16:02:49.809Z\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Task Status Update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"status\": \"COMPLETED\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}/tasks/{{taskId}}/status",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"tasks",
+						"{{taskId}}",
+						"status"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Task Status Update Response",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": \"COMPLETED\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "/tasks//status",
+							"path": [
+								"tasks",
+								"",
+								"status"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "369"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"171-VwOLJdyYco+wpnTbdFkjsD7LgnQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 08 Sep 2025 16:04:38 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Successfully updated task status\",\n    \"data\": {\n        \"id\": \"54bce30a-c9a2-4462-9b26-403e5c3cb454\",\n        \"title\": \"Closed Task\",\n        \"description\": \"Task in closed status\",\n        \"dueDate\": \"2025-09-07T09:01:11.967Z\",\n        \"priority\": \"LOW\",\n        \"status\": \"COMPLETED\",\n        \"createdByUserId\": \"ac9d794c-9f86-4354-a8af-e97d969abdad\",\n        \"createdAt\": \"2025-09-08T16:00:42.651Z\",\n        \"updatedAt\": \"2025-09-08T16:04:38.481Z\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Retrieve Single Task",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Open Task\",\n\t\"description\": \"Task in open status\",\n\t\"priority\": \"LOW\",\n\t\"dueDate\":  \"2025-09-07 09:01:11.967+00\"\n}"
+				},
+				"url": {
+					"raw": "{{domain}}/tasks/{{taskId}}",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"tasks",
+						"{{taskId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Retrieve Single Task Response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Open Task\",\n\t\"description\": \"Task in open status\",\n\t\"priority\": \"LOW\",\n\t\"dueDate\":  \"2025-09-07 09:01:11.967+00\"\n}"
+						},
+						"url": {
+							"raw": "/tasks/",
+							"path": [
+								"tasks",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "364"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"16c-P63zYm02AWR8zLe1DYX3v3EjG0g\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 08 Sep 2025 16:09:19 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Successfully retrieved task\",\n    \"data\": {\n        \"id\": \"54bce30a-c9a2-4462-9b26-403e5c3cb454\",\n        \"title\": \"Closed Task\",\n        \"description\": \"Task in closed status\",\n        \"dueDate\": \"2025-09-07T09:01:11.967Z\",\n        \"priority\": \"LOW\",\n        \"status\": \"COMPLETED\",\n        \"createdByUserId\": \"ac9d794c-9f86-4354-a8af-e97d969abdad\",\n        \"createdAt\": \"2025-09-08T16:00:42.651Z\",\n        \"updatedAt\": \"2025-09-08T16:04:38.481Z\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Retrieve Authenticated User Tasks",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Open Task\",\n\t\"description\": \"Task in open status\",\n\t\"priority\": \"LOW\",\n\t\"dueDate\":  \"2025-09-07 09:01:11.967+00\"\n}"
+				},
+				"url": {
+					"raw": "{{domain}}/tasks",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"tasks"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Retrieve Authenticated User Tasks Response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Open Task\",\n\t\"description\": \"Task in open status\",\n\t\"priority\": \"LOW\",\n\t\"dueDate\":  \"2025-09-07 09:01:11.967+00\"\n}"
+						},
+						"url": {
+							"raw": "/tasks",
+							"path": [
+								"tasks"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "52"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"34-SIES0JKNtsBIoJKocALGYLkRJLw\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 08 Sep 2025 16:12:05 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Successfully retrieved tasks\",\n    \"data\": []\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete Task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Open Task\",\n\t\"description\": \"Task in open status\",\n\t\"priority\": \"LOW\",\n\t\"dueDate\":  \"2025-09-07 09:01:11.967+00\"\n}"
+				},
+				"url": {
+					"raw": "{{domain}}/tasks/{{taskId}}",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"tasks",
+						"{{taskId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete Task Response",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Open Task\",\n\t\"description\": \"Task in open status\",\n\t\"priority\": \"LOW\",\n\t\"dueDate\":  \"2025-09-07 09:01:11.967+00\"\n}"
+						},
+						"url": {
+							"raw": "/tasks/",
+							"path": [
+								"tasks",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "362"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"16a-X4AL6W1AdRDi6PX5YcmvuoXFIGA\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 08 Sep 2025 16:18:50 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Successfully deleted task\",\n    \"data\": {\n        \"id\": \"54bce30a-c9a2-4462-9b26-403e5c3cb454\",\n        \"title\": \"Closed Task\",\n        \"description\": \"Task in closed status\",\n        \"dueDate\": \"2025-09-07T09:01:11.967Z\",\n        \"priority\": \"LOW\",\n        \"status\": \"COMPLETED\",\n        \"createdByUserId\": \"ac9d794c-9f86-4354-a8af-e97d969abdad\",\n        \"createdAt\": \"2025-09-08T16:00:42.651Z\",\n        \"updatedAt\": \"2025-09-08T16:04:38.481Z\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Assign Task To User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userId\": \"ac9d794c-9f86-4354-a8af-e97d969abdad\",\n\t\"taskId\": \"eee6240c-0d97-4862-bb11-71db7c6f2f57\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}/task-links",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"task-links"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Assign Task To User Response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"userId\": \"ac9d794c-9f86-4354-a8af-e97d969abdad\",\n\t\"taskId\": \"eee6240c-0d97-4862-bb11-71db7c6f2f57\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "/task-links",
+							"path": [
+								"task-links"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "598"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"256-mDqBjXqBd6bj9hx2xL1S8SOpdKc\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 08 Sep 2025 18:05:01 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Successfully assigned task to user\",\n    \"data\": {\n        \"id\": \"3d681df7-9f85-489c-bf28-6fd13bb87ae6\",\n        \"userId\": \"ac9d794c-9f86-4354-a8af-e97d969abdad\",\n        \"taskId\": \"eee6240c-0d97-4862-bb11-71db7c6f2f57\",\n        \"updatedAt\": \"2025-09-08T18:05:01.699Z\",\n        \"createdAt\": \"2025-09-08T18:05:01.699Z\",\n        \"task\": {\n            \"id\": \"eee6240c-0d97-4862-bb11-71db7c6f2f57\",\n            \"title\": \"Closed Task\",\n            \"description\": \"Task in closed status\",\n            \"dueDate\": \"2025-09-07T09:01:11.967Z\",\n            \"priority\": \"LOW\",\n            \"status\": \"COMPLETED\",\n            \"createdByUserId\": \"ac9d794c-9f86-4354-a8af-e97d969abdad\",\n            \"createdAt\": \"2025-09-08T18:01:47.251Z\",\n            \"updatedAt\": \"2025-09-08T18:02:22.928Z\"\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Retrieve Tags",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userId\": \"ac9d794c-9f86-4354-a8af-e97d969abdad\",\n\t\"taskId\": \"eee6240c-0d97-4862-bb11-71db7c6f2f57\"\n}"
+				},
+				"url": {
+					"raw": "{{domain}}/tags",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"tags"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Retrieve Tags Response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"userId\": \"ac9d794c-9f86-4354-a8af-e97d969abdad\",\n\t\"taskId\": \"eee6240c-0d97-4862-bb11-71db7c6f2f57\"\n}"
+						},
+						"url": {
+							"raw": "/tags",
+							"path": [
+								"tags"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1458"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"5b2-9h+JLpiAkv0BlT9AsNML/w6yrcE\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 08 Sep 2025 18:11:38 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Successfully retrieved tags\",\n    \"data\": [\n        {\n            \"id\": \"4dc165ec-c09a-4c62-95db-bd282f1b2d7c\",\n            \"name\": \"Important\",\n            \"createdAt\": \"2025-09-08T15:27:52.088Z\",\n            \"updatedAt\": \"2025-09-08T15:27:52.088Z\"\n        },\n        {\n            \"id\": \"d622de4c-93d4-4a9e-a60b-17cea6b6415c\",\n            \"name\": \"Urgent\",\n            \"createdAt\": \"2025-09-08T15:27:52.088Z\",\n            \"updatedAt\": \"2025-09-08T15:27:52.088Z\"\n        },\n        {\n            \"id\": \"fc573695-a02d-4a80-b172-4a08a81560b4\",\n            \"name\": \"Work\",\n            \"createdAt\": \"2025-09-08T15:27:52.088Z\",\n            \"updatedAt\": \"2025-09-08T15:27:52.088Z\"\n        },\n        {\n            \"id\": \"2244f5f0-f846-44e8-ae36-c91e7eeb0727\",\n            \"name\": \"Personal\",\n            \"createdAt\": \"2025-09-08T15:27:52.088Z\",\n            \"updatedAt\": \"2025-09-08T15:27:52.088Z\"\n        },\n        {\n            \"id\": \"74bdcefb-c31f-4e6f-9bba-96f3bf574c7b\",\n            \"name\": \"Shopping\",\n            \"createdAt\": \"2025-09-08T15:27:52.088Z\",\n            \"updatedAt\": \"2025-09-08T15:27:52.088Z\"\n        },\n        {\n            \"id\": \"3dab162d-9e81-456b-81db-024567af3034\",\n            \"name\": \"Health\",\n            \"createdAt\": \"2025-09-08T15:27:52.088Z\",\n            \"updatedAt\": \"2025-09-08T15:27:52.088Z\"\n        },\n        {\n            \"id\": \"d4a2d3fa-80ce-42db-aa74-7d2d7914cf36\",\n            \"name\": \"Finance\",\n            \"createdAt\": \"2025-09-08T15:27:52.088Z\",\n            \"updatedAt\": \"2025-09-08T15:27:52.088Z\"\n        },\n        {\n            \"id\": \"476b40ce-bc13-4008-ab07-3be7862da2d7\",\n            \"name\": \"Learning\",\n            \"createdAt\": \"2025-09-08T15:27:52.088Z\",\n            \"updatedAt\": \"2025-09-08T15:27:52.088Z\"\n        },\n        {\n            \"id\": \"a39433a0-a8e0-4288-b45e-534104642ab1\",\n            \"name\": \"Travel\",\n            \"createdAt\": \"2025-09-08T15:27:52.088Z\",\n            \"updatedAt\": \"2025-09-08T15:27:52.088Z\"\n        },\n        {\n            \"id\": \"90441f72-8aa5-4652-9898-4031630bcfed\",\n            \"name\": \"Family\",\n            \"createdAt\": \"2025-09-08T15:27:52.088Z\",\n            \"updatedAt\": \"2025-09-08T15:27:52.088Z\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Tagging Task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"taskId\": \"eee6240c-0d97-4862-bb11-71db7c6f2f57\",\n    \"tagIds\": [\n        \"4dc165ec-c09a-4c62-95db-bd282f1b2d7c\",\n        \"d622de4c-93d4-4a9e-a60b-17cea6b6415c\"\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}/task-tags",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"task-tags"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Tagging Task Response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"taskId\": \"eee6240c-0d97-4862-bb11-71db7c6f2f57\",\n    \"tagIds\": [\n        \"4dc165ec-c09a-4c62-95db-bd282f1b2d7c\",\n        \"d622de4c-93d4-4a9e-a60b-17cea6b6415c\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "/task-tags",
+							"path": [
+								"task-tags"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "485"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1e5-9SiUrhd7iHB/BM4iSxv8yeXzRf8\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 08 Sep 2025 18:16:29 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Successfully tagged task\",\n    \"data\": [\n        {\n            \"id\": \"43129b65-7658-4567-b7fd-e29ad5e6a251\",\n            \"taskId\": \"eee6240c-0d97-4862-bb11-71db7c6f2f57\",\n            \"tagId\": \"4dc165ec-c09a-4c62-95db-bd282f1b2d7c\",\n            \"createdAt\": \"2025-09-08T18:16:29.219Z\",\n            \"updatedAt\": \"2025-09-08T18:16:29.219Z\"\n        },\n        {\n            \"id\": \"cb13ed4a-0abe-4825-b08c-ed47f029da38\",\n            \"taskId\": \"eee6240c-0d97-4862-bb11-71db7c6f2f57\",\n            \"tagId\": \"d622de4c-93d4-4a9e-a60b-17cea6b6415c\",\n            \"createdAt\": \"2025-09-08T18:16:29.219Z\",\n            \"updatedAt\": \"2025-09-08T18:16:29.219Z\"\n        }\n    ]\n}"
+				}
+			]
+		}
+	]
+}
