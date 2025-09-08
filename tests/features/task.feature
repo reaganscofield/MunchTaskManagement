@@ -13,15 +13,6 @@ Feature: Task Management
       | My Custom Task  | Custom description | HIGH     | 2024-12-31T23:59:59.000Z      |
     Then I should get a success response with status code "200", message "Successfully created task", and task data
 
-  Scenario: User can create multiple tasks for testing
-    When I create multiple tasks with the following inputs for task retrieval, filtering and sorting:
-      | title           | description        | priority | dueDate                       |
-      | Urgent Task     | High priority work | HIGH     | 2024-12-31T23:59:59.000Z      |
-      | Regular Task    | Normal priority    | MEDIUM   | 2024-11-15T10:30:00.000Z      |
-      | Future Task     | Low priority item  | LOW      | 2025-01-15T14:00:00.000Z      |
-      | Overdue Task    | Past due item      | HIGH     | 2024-09-01T12:00:00.000Z      |
-    Then I should get a success response with status code "200", message "Successfully created task", and task data
-
   Scenario: User can retrieve all their tasks
     Given I have created multiple tasks, linked them to an authenticated user, and tagged them for task retrieval
     When I retrieve all my tasks
