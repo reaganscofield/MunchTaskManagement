@@ -20,7 +20,8 @@ export const validation = (type: any,value: 'body' | 'query' | 'params' = 'body'
           .map((error: ValidationError) => Object.values(error.constraints || {}))
           .flat()
           .join(', ');
-        next(httpHelper.sendBadRequestResponse(res, { error: message }));
+        httpHelper.sendBadRequestResponse(res, { error: message });
+        return;
       } else {
         next();
       }
