@@ -143,10 +143,12 @@ tests/
 │   ├── user.feature      # User registration and sign in
 │   ├── task.feature      # Task management operations
 │   └── tags.feature      # Tag retrieval
-└── steps/
-    ├── user.steps.ts     # User-related step definitions
-    ├── task.steps.ts     # Task-related step definitions
-    └── tags.steps.ts     # Tag-related step definitions
+├── steps/
+│   ├── user.steps.ts     # User-related step definitions
+│   ├── task.steps.ts     # Task-related step definitions
+│   └── tags.steps.ts     # Tag-related step definitions
+└── shared/
+    └── helpers.ts        # Shared test utilities and helpers
 ```
 
 ## 📚 API Documentation
@@ -306,8 +308,6 @@ src/
 ### Database Management
 
 - The application uses `force: true` in development, which recreates tables on startup
-- In production, change this to `alter: true` or remove the sync option
-- Regular database backups are recommended
 
 ### Testing Strategy
 

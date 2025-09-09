@@ -57,6 +57,10 @@ When('I delete the task', async function () {
   response = await makeRequest('delete', `/tasks/${taskId}`);
 });
 
+When('I try to delete a task with invalid UUID {string}', async function (invalidUuid: string) {
+  response = await makeRequest('delete', `/tasks/${invalidUuid}`);
+});
+
 When('I update the task with new details:', async function (dataTable: DataTable) {
   const getDataTable = dataTable.hashes();
   const updateData = getDataTable[0];
@@ -71,6 +75,12 @@ Given('I have created a task with title {string}', async function (title: string
 Then('I should get a success response with status code {string}, message {string}, and deleted task data', function (statusCode: string, message: string) {
   const getStatusCode: number = parseInt(statusCode);
   validateResponse(getStatusCode, message, validateTaskWithStatus);
+});
+
+Then('I should get a task error response with status code {string} and message {string}', function (statusCode: string, message: string) {
+  const getStatusCode: number = parseInt(statusCode);
+  expect(response.status).to.be.equal(getStatusCode);
+  expect(response.body.error).to.be.equal(message);
 });
 
 Then('I should get a success response with status code {string}, message {string}, and single task data', function (statusCode: string, message: string) {
