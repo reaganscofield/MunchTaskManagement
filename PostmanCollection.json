@@ -2,11 +2,86 @@
 	"info": {
 		"_postman_id": "183b3725-a4a6-4c5d-b7e7-e0f6ad8161d7",
 		"name": "MunchTaskManagement Collection",
+		"description": "Munch Task Management is a Node.js/TypeScript backend application built for task management. It's a RESTful API that provides functionality for users to create, manage, and organize tasks with features like tagging, task assignment, and user authentication.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "3731521",
 		"_collection_link": "https://www.postman.com/reaganscofield/workspace/munchtaskmanagement/collection/3731521-183b3725-a4a6-4c5d-b7e7-e0f6ad8161d7?action=share&source=collection_link&creator=3731521"
 	},
 	"item": [
+		{
+			"name": "Health Check",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/health",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"health"
+					]
+				},
+				"description": "Provides a quick way to verify that the API and its database connection are working correctly.\n\n- Returns the service status (`healthy`).\n    \n- Includes a timestamp of when the check was performed.\n    \n- Identifies the service (`Munch Task Management API`).\n    \n- Reports whether the database is successfully connected or not."
+			},
+			"response": [
+				{
+					"name": "Health Check Response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Open Task\",\n\t\"description\": \"Task in open status\",\n\t\"priority\": \"LOW\",\n\t\"dueDate\":  \"2025-09-07 09:01:11.967+00\"\n}"
+						},
+						"url": {
+							"raw": "/health",
+							"path": [
+								"health"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "151"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"97-ae2iG0Q8AM+x6CRSm39eKDe/Ds0\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 09 Sep 2025 06:18:46 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"healthy\",\n    \"timestamp\": \"2025-09-09T06:18:46.719Z\",\n    \"service\": \"Munch Task Management API\",\n    \"databaseStatus\": \"Database is successfully connected\"\n}"
+				}
+			]
+		},
 		{
 			"name": "User Signup",
 			"request": {
@@ -30,7 +105,8 @@
 						"users",
 						"signup"
 					]
-				}
+				},
+				"description": "Allows a new user to register by providing their name, email, and password. Returns a success message along with the user’s details (ID, name, and email)."
 			},
 			"response": [
 				{
@@ -116,7 +192,8 @@
 						"users",
 						"signin"
 					]
-				}
+				},
+				"description": "Authenticates an existing user using email and password. On success, it provides a JWT token and expiry date, which are required for accessing protected endpoints."
 			},
 			"response": [
 				{
@@ -211,7 +288,8 @@
 					"path": [
 						"tasks"
 					]
-				}
+				},
+				"description": "Lets an authenticated user create a new task by specifying a title, description, priority level, and due date. The task is automatically linked to the user who created it."
 			},
 			"response": [
 				{
@@ -306,7 +384,8 @@
 						"tasks",
 						"{{taskId}}"
 					]
-				}
+				},
+				"description": "Updates the details of an existing task (such as title, description, priority, or due date) using its unique task ID. Useful for keeping tasks up to date with changes."
 			},
 			"response": [
 				{
@@ -403,7 +482,8 @@
 						"{{taskId}}",
 						"status"
 					]
-				}
+				},
+				"description": "Specifically updates the status of a task (e.g., from OPEN to COMPLETED). This helps track progress without changing other task details."
 			},
 			"response": [
 				{
@@ -498,7 +578,8 @@
 						"tasks",
 						"{{taskId}}"
 					]
-				}
+				},
+				"description": "Fetches and returns full details of a specific task, including its title, description, priority, status, and creator, using the task’s unique ID."
 			},
 			"response": [
 				{
@@ -586,7 +667,8 @@
 					"path": [
 						"tasks"
 					]
-				}
+				},
+				"description": "Retrieves a list of all tasks that belong to the currently authenticated user. Helps users see their entire task list in one request."
 			},
 			"response": [
 				{
@@ -671,7 +753,8 @@
 						"tasks",
 						"{{taskId}}"
 					]
-				}
+				},
+				"description": "Deletes a task by its ID and returns the details of the deleted task. Once deleted, the task is no longer accessible."
 			},
 			"response": [
 				{
@@ -761,7 +844,8 @@
 					"path": [
 						"task-links"
 					]
-				}
+				},
+				"description": "Allows one user to assign an existing task to another user by linking a user ID with a task ID. Useful for collaboration and delegation of work."
 			},
 			"response": [
 				{
@@ -853,7 +937,8 @@
 					"path": [
 						"tags"
 					]
-				}
+				},
+				"description": "Returns a list of all predefined tags (like Important, Urgent, Work, Personal, etc.) that can be used for organizing tasks."
 			},
 			"response": [
 				{
@@ -942,7 +1027,8 @@
 					"path": [
 						"task-tags"
 					]
-				}
+				},
+				"description": "Associates one or more tags with a specific task. Helps categorize and organize tasks by applying labels such as Work, Urgent, or Personal."
 			},
 			"response": [
 				{

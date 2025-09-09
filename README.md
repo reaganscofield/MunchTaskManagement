@@ -102,8 +102,31 @@ npm run dev
 
 The application will start on `http://localhost:3005` (or your configured port).
 
+### 3. Health Check
 
-### 3. Application Logs
+Once the application is running, you can verify it's working correctly by checking the health endpoint:
+
+```bash
+# Check application health
+curl http://localhost:3005/health
+```
+
+**Response Example:**
+```json
+{
+  "status": "healthy",
+  "timestamp": "2025-01-09T10:30:00.000Z",
+  "service": "Munch Task Management API",
+  "databaseStatus": "Database is successfully connected"
+}
+```
+
+The health check endpoint provides:
+- **Application status**: Confirms the API is running
+- **Database connectivity**: Verifies PostgreSQL connection
+- **Timestamp**: Current server time
+
+### 4. Application Logs
 
 Logs are stored in the `src/logs/` directory:
 - **Debug logs**: `src/logs/debug/YYYY-MM-DD.log`
@@ -232,7 +255,7 @@ This online documentation provides:
 - **Authentication workflows**
 
 ### 📁 Local Collection File
-A local Postman collection is also included in the repository (`Collection.postman.json`) with:
+A local Postman collection is also included in the repository (`PostmanCollection.json`) with:
 
 - **Pre-configured requests** for all API endpoints
 - **Environment variables** for easy testing
