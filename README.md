@@ -46,7 +46,6 @@ POSTGRES_DB=munch_task_management
 
 # Application Configuration
 APPLICATION_PORT=3005
-LOG_DIR=./src/logs
 
 # JWT Secret (use a strong, random string)
 SECRET_KEY=your_super_secret_jwt_key_here

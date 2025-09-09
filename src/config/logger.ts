@@ -2,7 +2,6 @@ import { existsSync, mkdirSync } from 'fs';
 import { join } from 'path';
 import winston from 'winston';
 import winstonDaily from 'winston-daily-rotate-file';
-import { applicationConfig } from './configLoader';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
@@ -10,7 +9,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // logs dir
-const logDir: string = join(__dirname, applicationConfig.logDir);
+const logDir: string = join(__dirname, '..', 'logs');
 
 if (!existsSync(logDir)) {
   mkdirSync(logDir);
@@ -63,7 +62,6 @@ logger.add(
 
 const stream = {
   write: (message: string) => {
-    console.log("For Debugging:::::::::::::::::::::::::::::::::::: ", message);
     logger.info(message.substring(0, message.lastIndexOf('\n')));
   },
 };

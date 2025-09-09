@@ -15,7 +15,7 @@ const env = cleanEnv(process.env, {
     POSTGRES_PASSWORD: stringNotEmpty(),
     POSTGRES_DB: stringNotEmpty(),
     APPLICATION_PORT: num({ default: 3005 }),
-    LOG_DIR: str({ default: '../logs' }),
+    LOG_DIR: str({ default: './src/logs' }),
     SECRET_KEY: stringNotEmpty(),
 });
 

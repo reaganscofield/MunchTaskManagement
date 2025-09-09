@@ -9,7 +9,6 @@ import { taskLinkEndpoints } from './application/routes/task-link.endpoints';
 import { taskTagEndpoints } from './application/routes/task-tag.endpoints';
 import { authentication } from './application/middlewares/authentication';
 import httpHelper from './application/routes/httpHelper';
-import { dbConnection } from './database/connection';
 
 // Express application
 const application: express.Application = express();
@@ -20,12 +19,10 @@ application.use(express.urlencoded({ extended: true }));
 
 // Health check endpoint
 application.get('/health', async (req, res) => {
-  const isDatabaseConnected = await dbConnection.authenticate().then(() => true).catch(() => false);
   httpHelper.sendOkResponse(res, { 
     status: 'healthy', 
     timestamp: new Date().toISOString(),
-    service: 'Munch Task Management API',
-    databaseStatus: isDatabaseConnected ? 'Database is successfully connected' : 'Database is not connected'
+    service: 'Munch Task Management API'
   });
 });
 
