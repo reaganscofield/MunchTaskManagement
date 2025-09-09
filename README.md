@@ -107,8 +107,7 @@ curl http://localhost:3005/health
 {
   "status": "healthy",
   "timestamp": "2025-01-09T10:30:00.000Z",
-  "service": "Munch Task Management API",
-  "databaseStatus": "Database is successfully connected"
+  "service": "Munch Task Management API"
 }
 ```
 
@@ -306,7 +305,6 @@ src/
 | `POSTGRES_PASSWORD` | PostgreSQL password | - | ✅ |
 | `POSTGRES_DB` | PostgreSQL database name | - | ✅ |
 | `APPLICATION_PORT` | Application port | 3005 | ❌ |
-| `LOG_DIR` | Log directory path | ./src/logs | ❌ |
 | `SECRET_KEY` | JWT secret key | - | ✅ |
 
 ### Database Models
