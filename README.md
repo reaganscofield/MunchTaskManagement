@@ -42,7 +42,7 @@ Create a `.env` file in the root directory with the following variables:
 # Database Configuration
 POSTGRES_USER=your_db_user
 POSTGRES_PASSWORD=your_secure_password
-POSTGRES_DB=munch_task_management
+POSTGRES_DB=your_database_name
 
 # Application Configuration
 APPLICATION_PORT=3005

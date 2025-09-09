@@ -3,6 +3,7 @@ import { Response } from "express";
 import { UnknownType } from "../interfaces/shared.interfaces";
 import { Task } from "../../database/models/Task";
 import { WhereOptions } from "sequelize";
+import { User } from "../../database/models/User";
 
 export class ControllerHelpers {
 
@@ -27,4 +28,13 @@ export class ControllerHelpers {
     return task;
   }
 
+  public async findUserOrFail(userId: string, res: Response) {
+    const whereClause: WhereOptions = { where: { id: userId }, raw: true };
+    const user = await User.findOne(whereClause);
+    if (!user) {
+      httpHelper.sendBadRequestResponse(res, { error: "User not found" });
+      return null;
+    }
+    return user;
+  }
 }
