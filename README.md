@@ -51,38 +51,30 @@ APPLICATION_PORT=3005
 SECRET_KEY=your_super_secret_jwt_key_here
 ```
 
-### 2. Start PostgreSQL Database
+### 2. DB Setup
+
+Open Terminal in the root directory
 
 ```bash
-# Start the PostgreSQL database container
-docker-compose up -d
-
-# Verify the database is running
-docker ps
+docker-compose up --build
 ```
 
-The database will be available at:
-- **Host**: localhost
-- **Port**: 5432
-- **Database**: munch_task_management
-- **User**: your_db_user
-- **Password**: your_secure_password
-
-### 3. Database Management
+Open new terminal tab in the root directory
 
 ```bash
-# Stop the database
-docker-compose down
-
-# Stop and remove volumes (⚠️ This will delete all data)
-docker-compose down -v
-
-# View database logs
-docker-compose logs db
-
-# Access PostgreSQL shell
-docker exec -it postgres_db psql -U your_db_user -d munch_task_management
+docker exec -it postgres_db bash
 ```
+
+```bash
+psql -U <your_postgres_user>
+```
+
+```bash
+GRANT ALL PRIVILEGES ON DATABASE <your_database_name> TO <your_postgres_user>
+```
+
+If you run into issues with the `psql -U <your_postgres_user>` command, you may consider keeping your database username as "postgres" in the .env file and then run and take your docker down with the command `docker-compose down` and then list the available volumes with the command `docker volume ls` then remove the volume with the command `docker volume rm <your_volume_name>` (example volume name: `munchtaskmanagement_pgdata`) and restart the database setup from scratch.
+
 
 ## 🚀 Running the Application
 
